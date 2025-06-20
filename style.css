@@ -501,6 +501,9 @@ footer {
     flex-direction: column;
     gap: 1.5rem;
   }
+  .hero-content-glassmorphism {
+    padding: 2rem 0.7rem;
+  }
 }
 @media (max-width: 600px) {
   h1 { font-size: 2rem; }
@@ -511,6 +514,36 @@ footer {
   }
   .profile-placeholder {
     width: 100px; height: 100px; font-size: 0.9rem;
+  }
+  .hero-content-glassmorphism {
+    padding: 1.2rem 0.3rem;
+    gap: 1rem;
+  }
+  .hero-content-glassmorphism h1 {
+    font-size: 1.3rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+  }
+  .cube-container {
+    width: 48px;
+    height: 48px;
+    right: -18%;
+    bottom: 2%;
+  }
+  .cube, .cube-face {
+    width: 48px;
+    height: 48px;
+  }
+  .hero-bg-video {
+    min-height: 220px;
+    max-height: 350px;
   }
 }
 
@@ -657,8 +690,46 @@ footer {
   color: #fff;
 }
 @media (max-width: 700px) {
-  .nav-links { gap: 0.7rem; }
-  .nav-logo { font-size: 1rem; }
+  .nav-flex {
+    flex-direction: row;
+    align-items: center;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    box-shadow: 0 8px 32px #6247aa22;
+    padding: 0.5rem 0;
+    display: none;
+    z-index: 150;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid #e0e7ff;
+    color: #3730a3;
+    background: none;
+  }
+  .nav-links li a:hover, .nav-links li a.active {
+    background: #a5b4fc;
+    color: #fff;
+  }
 }
 
 /* Animated Text in Hero */
@@ -953,5 +1024,142 @@ footer {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* --- Responsive Navbar Hamburger --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  width: 2rem;
+  height: 0.22rem;
+  margin: 0.25rem 0;
+  background: #6247aa;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .hero-content-glassmorphism {
+    padding: 2rem 0.7rem;
+  }
+}
+@media (max-width: 700px) {
+  .nav-flex {
+    flex-direction: row;
+    align-items: center;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    box-shadow: 0 8px 32px #6247aa22;
+    padding: 0.5rem 0;
+    display: none;
+    z-index: 150;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid #e0e7ff;
+    color: #3730a3;
+    background: none;
+  }
+  .nav-links li a:hover, .nav-links li a.active {
+    background: #a5b4fc;
+    color: #fff;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content-glassmorphism {
+    padding: 1.2rem 0.3rem;
+    gap: 1rem;
+  }
+  .hero-content-glassmorphism h1 {
+    font-size: 1.3rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+  }
+  .cube-container {
+    width: 48px;
+    height: 48px;
+    right: -18%;
+    bottom: 2%;
+  }
+  .cube, .cube-face {
+    width: 48px;
+    height: 48px;
+  }
+  .hero-bg-video {
+    min-height: 220px;
+    max-height: 350px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove tap highlight on mobile */
+body, .btn, a, input, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 700px) {
+  .nav-links {
+    transition: max-height 0.35s cubic-bezier(.4,2,.6,1), opacity 0.3s;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .nav-links.open {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .section-card {
+    margin: 1.2rem 0;
+    padding: 1.5rem 0;
   }
 } 

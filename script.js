@@ -150,4 +150,19 @@ if (feedbackForm) {
     feedbackForm.reset();
     setTimeout(() => { feedbackMessage.innerHTML = ''; }, 3000);
   });
+}
+
+// --- Hamburger Menu Toggle ---
+const hamburger = document.getElementById('hamburger');
+const navLinksMenu = document.getElementById('navLinks');
+if (hamburger && navLinksMenu) {
+  hamburger.addEventListener('click', () => {
+    navLinksMenu.classList.toggle('open');
+  });
+  // Close menu when a link is clicked (mobile UX)
+  navLinksMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinksMenu.classList.remove('open');
+    });
+  });
 } 
