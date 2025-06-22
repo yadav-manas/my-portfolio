@@ -1,21 +1,23 @@
-// --- Projects Data ---
+console.log('Script loaded');
+
+// Projects Data
 const projects = [
   {
-    title: "Drone Landing Website",
-    description: "A modern web application for drone landing zone management and scheduling. Features include real-time availability tracking, booking system, and weather integration.",
-    tech: ["React.js", "Node.js", "MongoDB", "Socket.io"],
-    demo: "#",
-    github: "#"
-  },
-  // Add more projects here
+    title: "Wanderlust - Travel & Tourism Website",
+    description: "A modern web application for discovering destinations and booking tours. Explore amazing places and create unforgettable memories.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    demo: "https://yadav-manas.github.io/Travel-Tourism-Website/",
+    github: "https://github.com/yadav-manas/Travel-Tourism-Website"
+  }
 ];
 
-// --- Render Projects ---
+// Render Projects
 const projectsGrid = document.getElementById('projectsGrid');
 if (projectsGrid) {
+  console.log('Rendering projects');
   projects.forEach(project => {
     const card = document.createElement('div');
-    card.className = 'project-card';
+    card.className = 'project-card tilt-card';
     card.innerHTML = `
       <div class="project-title">${project.title}</div>
       <div class="project-desc">${project.description}</div>
@@ -23,146 +25,175 @@ if (projectsGrid) {
         ${project.tech.map(t => `<span>${t}</span>`).join('')}
       </div>
       <div class="project-links">
-        <a href="${project.demo}" class="project-link" target="_blank">Live Demo</a>
-        <a href="${project.github}" class="project-link" target="_blank">GitHub</a>
+        <a href="${project.demo}" class="project-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
+        <a href="${project.github}" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     `;
     projectsGrid.appendChild(card);
   });
+} else {
+  console.error('projectsGrid element not found');
 }
 
-// --- Contact Form Interactivity ---
+// Contact Form
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    formMessage.textContent = 'Thank you for reaching out! (Demo only)';
-    contactForm.reset();
-    setTimeout(() => { formMessage.textContent = ''; }, 3000);
-  });
-}
-
-// --- Smooth Scroll for Anchor Links ---
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+    const formData = new FormData(contactForm);
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        formMessage.innerHTML = '<span class="success-check">✔</span> Thank you for your message!';
+        contactForm.reset();
+      } else {
+        formMessage.innerHTML = 'Oops! There was a problem submitting your form.';
+      }
+    } catch (error) {
+      formMessage.innerHTML = 'Oops! There was a problem submitting your form.';
     }
+    setTimeout(() => formMessage.innerHTML = '', 4000);
   });
-});
-
-// --- Dynamic Card Live Update ---
-const cardTitleInput = document.getElementById('cardTitleInput');
-const cardDescInput = document.getElementById('cardDescInput');
-const dynamicCardTitle = document.getElementById('dynamicCardTitle');
-const dynamicCardDesc = document.getElementById('dynamicCardDesc');
-
-if (cardTitleInput && dynamicCardTitle) {
-  cardTitleInput.addEventListener('input', function() {
-    dynamicCardTitle.textContent = this.value || 'Dynamic Card Title';
-  });
-}
-if (cardDescInput && dynamicCardDesc) {
-  cardDescInput.addEventListener('input', function() {
-    dynamicCardDesc.textContent = this.value || 'This is a dynamic card. Change the text and see the card update live!';
-  });
+} else {
+  console.error('contactForm element not found');
 }
 
-// --- Animated Text in Hero Section ---
+// Animated Text
 const animatedText = document.getElementById('animatedText');
-const roles = [
+const texts = [
   'Web Developer',
-  'Software Developer',
   'App Developer',
   'Tech Enthusiast',
-  'Drone Tech Explorer',
-  'BCA Student',
+  'Problem Solver'
 ];
-let roleIndex = 0;
+let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-let typingSpeed = 90;
 
-function typeRole() {
-  if (!animatedText) return;
-  const currentRole = roles[roleIndex];
+function typeText() {
+  const currentText = texts[textIndex];
+  
   if (isDeleting) {
+    animatedText.textContent = currentText.substring(0, charIndex - 1);
     charIndex--;
-    animatedText.innerHTML = currentRole.substring(0, charIndex) + '<span class="cursor">|</span>';
-    if (charIndex === 0) {
-      isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      setTimeout(typeRole, 600);
-    } else {
-      setTimeout(typeRole, typingSpeed / 2);
-    }
   } else {
+    animatedText.textContent = currentText.substring(0, charIndex + 1);
     charIndex++;
-    animatedText.innerHTML = currentRole.substring(0, charIndex) + '<span class="cursor">|</span>';
-    if (charIndex === currentRole.length) {
-      isDeleting = true;
-      setTimeout(typeRole, 1200);
-    } else {
-      setTimeout(typeRole, typingSpeed);
-    }
   }
+  
+  let typeSpeed = isDeleting ? 100 : 150;
+  
+  if (!isDeleting && charIndex === currentText.length) {
+    typeSpeed = 2000; // Pause at end
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    textIndex = (textIndex + 1) % texts.length;
+    typeSpeed = 500; // Pause before next word
+  }
+  
+  setTimeout(typeText, typeSpeed);
 }
-typeRole();
 
-// --- Sticky Nav Active Link on Scroll ---
-const navLinks = document.querySelectorAll('.nav-links a');
-const sections = Array.from(document.querySelectorAll('section'));
-window.addEventListener('scroll', () => {
-  let scrollPos = window.scrollY + 120;
-  let current = sections.find(section => section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos);
-  navLinks.forEach(link => link.classList.remove('active'));
-  if (current) {
-    let id = current.getAttribute('id');
-    let activeLink = document.querySelector('.nav-links a[href="#' + id + '"]');
-    if (activeLink) activeLink.classList.add('active');
-  }
+if (animatedText) {
+  typeText();
+}
+
+// Navigation
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+}
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
 });
 
-// --- Section Reveal Animation on Scroll ---
-function revealSectionsOnScroll() {
-  const sections = document.querySelectorAll('.section-card');
-  const trigger = window.innerHeight * 0.85;
+// Active navigation highlighting
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
   sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top < trigger) {
-      section.classList.add('visible');
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (scrollY >= (sectionTop - 200)) {
+      current = section.getAttribute('id');
     }
   });
-}
-window.addEventListener('scroll', revealSectionsOnScroll);
-window.addEventListener('DOMContentLoaded', revealSectionsOnScroll);
+  
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('href') === `#${current}`) {
+      item.classList.add('active');
+    }
+  });
+});
 
-// --- Feedback Form Success Animation ---
-const feedbackForm = document.getElementById('feedbackForm');
-const feedbackMessage = document.getElementById('feedbackMessage');
-if (feedbackForm) {
-  feedbackForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    feedbackMessage.innerHTML = '<span class="success-check">✔</span> Thank you for your feedback!';
-    feedbackForm.reset();
-    setTimeout(() => { feedbackMessage.innerHTML = ''; }, 3000);
+// 3D Tilt Effect (Optimized)
+document.querySelectorAll('.tilt-card').forEach(card => {
+  let ticking = false;
+  card.addEventListener('mousemove', e => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotateX = -y / rect.height * 10;
+        const rotateY = x / rect.width * 10;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
   });
-}
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateX(0) rotateY(0)';
+  });
+});
 
-// --- Hamburger Menu Toggle ---
-const hamburger = document.getElementById('hamburger');
-const navLinksMenu = document.getElementById('navLinks');
-if (hamburger && navLinksMenu) {
-  hamburger.addEventListener('click', () => {
-    navLinksMenu.classList.toggle('open');
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
   });
-  // Close menu when a link is clicked (mobile UX)
-  navLinksMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinksMenu.classList.remove('open');
-    });
-  });
-} 
+}, observerOptions);
+
+// Observe all section cards
+document.querySelectorAll('.section-card').forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(30px)';
+  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(card);
+});

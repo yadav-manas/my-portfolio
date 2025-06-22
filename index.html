@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manas Yadav's professional portfolio showcasing web and app development projects.">
+  <meta name="author" content="Manas Yadav">
   <title>Manas Yadav | Portfolio</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,23 +13,21 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
     <div class="container nav-flex">
       <div class="nav-logo">Manas Yadav</div>
-      <div class="hamburger" id="hamburger" aria-label="Open navigation" tabindex="0">
+      <div class="hamburger" id="hamburger" aria-label="Toggle navigation" tabindex="0">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#training">Training</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#feedback">Feedback</a></li>
+      <ul class="nav-links" id="navLinks" role="menu">
+        <li role="menuitem"><a href="#hero">Home</a></li>
+        <li role="menuitem"><a href="#about">About</a></li>
+        <li role="menuitem"><a href="#skills">Skills</a></li>
+        <li role="menuitem"><a href="#projects">Projects</a></li>
+        <li role="menuitem"><a href="#training">Training</a></li>
+        <li role="menuitem"><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -40,18 +40,18 @@
   </svg>
 
   <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <video class="hero-bg-video" autoplay loop muted playsinline poster="" preload="auto">
+  <section class="hero" id="hero" aria-label="Hero section">
+    <video class="hero-bg-video" autoplay loop muted playsinline preload="auto">
       <source src="video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <div class="hero-content-glassmorphism">
       <div class="container">
         <h1>Manas Yadav</h1>
-        <div class="animated-text" id="animatedText"></div>
+        <div class="animated-text" id="animatedText" aria-live="polite"></div>
         <div class="hero-buttons">
-          <a href="MANAS_YADAV_PROFILE2.pdf" class="btn btn-primary" download>Download Resume</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          <a href="MANAS_YADAV_PROFILE2.pdf" class="btn btn-primary" download aria-label="Download Manas Yadav's resume">Download Resume</a>
+          <a href="#contact" class="btn btn-secondary" aria-label="Navigate to contact section">Contact Me</a>
         </div>
       </div>
     </div>
@@ -69,10 +69,10 @@
   </section>
 
   <!-- About Section -->
-  <section class="section-card" id="about">
+  <section class="section-card" id="about" aria-label="About section">
     <div class="container about-flex">
-      <div class="about-img">
-        <img src="profile.jpg" alt="Profile Image" class="profile-img-default">
+      <div class="about-img tilt-card">
+        <img src="profile.jpg" alt="Manas Yadav's profile image" class="profile-img-default">
       </div>
       <div class="about-content">
         <h2>About Me</h2>
@@ -82,11 +82,11 @@
   </section>
 
   <!-- Skills Section -->
-  <section class="section-card" id="skills">
+  <section class="section-card" id="skills" aria-label="Skills section">
     <div class="container">
       <h2>Skills</h2>
       <div class="skills-grid">
-        <div class="skill-category">
+        <div class="skill-category tilt-card">
           <h3>Frontend</h3>
           <ul>
             <li>React.js</li>
@@ -95,21 +95,21 @@
             <li>JavaScript</li>
           </ul>
         </div>
-        <div class="skill-category">
+        <div class="skill-category tilt-card">
           <h3>Backend</h3>
           <ul>
             <li>Firebase</li>
             <li>Node.js (basic)</li>
           </ul>
         </div>
-        <div class="skill-category">
+        <div class="skill-category tilt-card">
           <h3>Mobile</h3>
           <ul>
             <li>Android Studio</li>
             <li>Kotlin (basics)</li>
           </ul>
         </div>
-        <div class="skill-category">
+        <div class="skill-category tilt-card">
           <h3>Tools</h3>
           <ul>
             <li>Git</li>
@@ -121,33 +121,31 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="section-card" id="projects">
+  <section class="section-card" id="projects" aria-label="Projects section">
     <div class="container">
       <h2>Projects</h2>
-      <div class="projects-grid" id="projectsGrid">
-        <!-- Projects will be injected by JS -->
-      </div>
+      <div class="projects-grid" id="projectsGrid"></div>
     </div>
   </section>
 
   <!-- Training & Education Section -->
-  <section class="section-card" id="training">
+  <section class="section-card" id="training" aria-label="Training and education section">
     <div class="container">
       <h2>Training & Education</h2>
       <div class="training-list">
-        <div class="training-item">
+        <div class="training-item tilt-card">
           <h3>App Development Training</h3>
           <p>Ongoing - Allenhouse Business School</p>
         </div>
-        <div class="training-item">
+        <div class="training-item tilt-card">
           <h3>BCA</h3>
           <p>Allenhouse Business School, Kanpur</p>
         </div>
-        <div class="training-item">
+        <div class="training-item tilt-card">
           <h3>12th Standard</h3>
           <p>CBSE Board, 2022</p>
         </div>
-        <div class="training-item">
+        <div class="training-item tilt-card">
           <h3>10th Standard</h3>
           <p>CBSE Board, 2020</p>
         </div>
@@ -155,76 +153,66 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="section-card" id="testimonials">
-    <div class="container">
-      <h2>Testimonials</h2>
-      <div class="testimonials-list">
-        <div class="testimonial-item">
-          <p>"Manas is a dedicated and passionate BCA student, always eager to learn and innovate. His commitment to excellence and creativity in web development is truly impressive."</p>
-          <span>- Faculty, Allenhouse Business School</span>
-        </div>
-        <div class="testimonial-item">
-          <p>"A tech enthusiast with a knack for problem-solving and teamwork. Manas brings energy and fresh ideas to every project."</p>
-          <span>- Project Mentor</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact Section -->
-  <section class="section-card" id="contact">
+  <section class="section-card" id="contact" aria-label="Contact section">
     <div class="container contact-flex">
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form tilt-card" id="contactForm" action="https://formspree.io/f/xqabdvjd" method="POST" aria-label="Contact form">
         <h2>Contact Me</h2>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <div class="form-group">
+          <input type="text" name="name" id="contactName" placeholder=" " required>
+          <label for="contactName">Your Name</label>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" id="contactEmail" placeholder=" " required>
+          <label for="contactEmail">Your Email</label>
+        </div>
+        <div class="form-group">
+          <textarea name="message" id="contactMessage" placeholder=" " required></textarea>
+          <label for="contactMessage">Your Message</label>
+        </div>
         <button type="submit" class="btn btn-primary">Send Message</button>
-        <div class="form-message" id="formMessage"></div>
+        <div class="form-message" id="formMessage" aria-live="assertive"></div>
       </form>
       <div class="contact-info">
-        <h3>Connect with me</h3>
+        <h3>Connect with Me</h3>
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/manas-yadav-a596a3289/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-link linkedin">in</a>
-          <a href="https://github.com/yadav-manas" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-link github">GH</a>
-          <a href="https://www.instagram.com/arpit_yadav__02/" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-link instagram">IG</a>
+          <a href="https://www.linkedin.com/in/manas-yadav-a596a3289/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-link linkedin" aria-label="Visit Manas Yadav's LinkedIn profile">in</a>
+          <a href="https://github.com/yadav-manas" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-link github" aria-label="Visit Manas Yadav's GitHub profile">GH</a>
+          <a href="https://www.instagram.com/arpit_yadav__02/" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-link instagram" aria-label="Visit Manas Yadav's Instagram profile">IG</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Feedback Section -->
-  <section class="section-card" id="feedback">
-    <div class="container">
-      <h2>Feedback</h2>
-      <form class="feedback-form" id="feedbackForm" autocomplete="off">
-        <div class="form-group">
-          <input type="text" name="feedbackName" id="feedbackName" placeholder=" " required>
-          <label for="feedbackName">Your Name</label>
-        </div>
-        <div class="form-group">
-          <input type="text" name="feedbackMobile" id="feedbackMobile" placeholder=" " required>
-          <label for="feedbackMobile">Mobile No</label>
-        </div>
-        <div class="form-group">
-          <textarea name="feedbackMsg" id="feedbackMsg" placeholder=" " required></textarea>
-          <label for="feedbackMsg">Your Feedback</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit!</button>
-        <div class="form-message" id="feedbackMessage"></div>
-      </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="container footer-flex">
-      <p>© 2025 Manas Yadav</p>
-      <p>Built with HTML, CSS & JS</p>
+  <footer class="footer" aria-label="Footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <div class="footer-social-links">
+            <a href="https://www.linkedin.com/in/manas-yadav-a596a3289/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+            <a href="https://github.com/yadav-manas" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+            <a href="https://www.instagram.com/arpit_yadav__02/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Manas Yadav. All rights reserved.</p>
+        <p>Built with ❤️ using HTML, CSS & JavaScript</p>
+      </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
-</html> 
+</html>
